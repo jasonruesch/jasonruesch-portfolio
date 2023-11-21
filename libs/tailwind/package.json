@@ -1,0 +1,17 @@
+{
+  "name": "@jasonruesch/tailwind",
+  "version": "0.0.0-development",
+  "dependencies": {
+    "tailwindcss": "^3.3.5"
+  },
+  "module": "./index.mjs",
+  "typings": "./index.d.ts",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jasonruesch/jasonruesch.git",
+    "directory": "libs/tailwind"
+  },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com"
+  }
+}
