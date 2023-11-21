@@ -1,0 +1,27 @@
+{
+  "compileOnSave": false,
+  "compilerOptions": {
+    "rootDir": ".",
+    "sourceMap": true,
+    "declaration": false,
+    "moduleResolution": "node",
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "importHelpers": true,
+    "target": "es2015",
+    "module": "esnext",
+    "lib": ["es2020", "dom"],
+    "skipLibCheck": true,
+    "skipDefaultLibCheck": true,
+    "baseUrl": ".",
+    "paths": {
+      "@jasonruesch/portfolio-data-access": [
+        "libs/portfolio/data-access/src/index.ts"
+      ],
+      "@jasonruesch/portfolio-ui": ["libs/portfolio/ui/src/index.ts"],
+      "@jasonruesch/shared-ui": ["libs/shared/ui/src/index.ts"],
+      "@jasonruesch/tailwind": ["libs/tailwind/src/index.ts"]
+    }
+  },
+  "exclude": ["node_modules", "tmp"]
+}

@@ -1,0 +1,9 @@
+{
+  "name": "@jasonruesch/tailwind",
+  "version": "0.0.0-development",
+  "dependencies": {
+    "tailwindcss": "^3.3.5"
+  },
+  "module": "./index.mjs",
+  "typings": "./index.d.ts"
+}
