@@ -8,10 +8,10 @@
   "typings": "./index.d.ts",
   "repository": {
     "type": "git",
-    "url": "https://github.com/jasonruesch/jasonruesch.git",
+    "url": "git+https://github.com/jasonruesch/jasonruesch.git",
     "directory": "libs/tailwind"
   },
   "publishConfig": {
-    "registry": "https://npm.pkg.github.com"
+    "@jasonruesch:registry": "https://npm.pkg.github.com"
   }
 }

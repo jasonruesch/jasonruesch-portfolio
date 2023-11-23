@@ -1,7 +1,6 @@
 const srcRoot = `libs/tailwind`;
 
 module.exports = {
-  branches: ['main'],
   pkgRoot: `dist/${srcRoot}`,
   commitPaths: [
     'nx.json',
@@ -12,17 +11,33 @@ module.exports = {
     `${srcRoot}/*`,
   ],
   plugins: [
+    '@semantic-release/commit-analyzer',
+    '@semantic-release/release-notes-generator',
     [
       '@semantic-release/changelog',
       {
         changelogFile: `${srcRoot}/CHANGELOG.md`,
       },
     ],
+    '@semantic-release/npm',
+    [
+      '@semantic-release/npm',
+      {
+        pkgRoot: '.',
+      },
+    ],
     [
       '@semantic-release/git',
       {
-        assets: [`${srcRoot}/CHANGELOG.md`],
+        assets: [
+          'package.json',
+          'package-lock.json',
+          `${srcRoot}/CHANGELOG.md`,
+        ],
+        message:
+          'chore(release): ${nextRelease.version} [skip ci]\n\n${nextRelease.notes}',
       },
     ],
+    '@semantic-release/github',
   ],
 };
