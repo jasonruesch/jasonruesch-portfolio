@@ -37,7 +37,11 @@
       "executor": "@theunderscorer/nx-semantic-release:semantic-release",
       "options": {
         "buildTarget": "tailwind:build",
-        "outputPath": "dist/libs/tailwind"
+        "outputPath": "dist/libs/tailwind",
+        "github": true,
+        "changelog": true,
+        "npm": true,
+        "tagFormat": "tailwind-v${VERSION}"
       }
     }
   },

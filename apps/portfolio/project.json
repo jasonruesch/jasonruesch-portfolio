@@ -118,6 +118,15 @@
           }
         }
       }
+    },
+    "semantic-release": {
+      "executor": "@theunderscorer/nx-semantic-release:semantic-release",
+      "options": {
+        "github": true,
+        "changelog": true,
+        "npm": false,
+        "tagFormat": "portfolio-v${VERSION}"
+      }
     }
   },
   "tags": ["type:app", "scope:portfolio"]
