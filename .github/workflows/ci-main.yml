@@ -1,0 +1,166 @@
+name: Main Branch CI
+
+env:
+  NX_CLOUD_ACCESS_TOKEN: ${{ secrets.NX_CLOUD_ACCESS_TOKEN }}
+  CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
+
+# this workflow runs only on the main branch
+on:
+  push:
+    branches:
+      - 'main'
+
+# concurrency:
+#   group: ${{ github.workflow }}-${{ github.ref || github.run_id }}
+#   cancel-in-progress: true
+
+# Needed for nx-set-shas within nx-cloud-main.yml, when run on the main branch
+permissions:
+  actions: read
+  contents: read
+
+jobs:
+  main:
+    name: Nx Cloud - Main Job
+    if: contains(github.event.head_commit.message, '(release)') != true
+    uses: nrwl/ci/.github/workflows/nx-cloud-main.yml@v0.13.1
+    with:
+      main-branch-name: main
+      number-of-agents: 3
+      init-commands: |
+        npx nx-cloud start-ci-run --stop-agents-after="build" --agent-count=3
+      parallel-commands: |
+        npx nx-cloud record -- npx nx format:check
+        npx nx-cloud record -- npx commitlint --from ${{ github.sha }} --to ${{ github.sha }} --verbose
+      parallel-commands-on-agents: |
+        npx nx run-many --target=lint --all --parallel=3
+        npx nx run-many --target=test --all --parallel=3 --ci --coverage --skip-nx-cache
+        npx nx run-many --target=build --all --parallel=3
+        npx nx run-many --target=e2e --all --parallel=1 --ci
+      artifacts-path: |
+        dist/
+        coverage/
+      artifacts-name: dist-and-coverage-artifacts
+
+  agents:
+    name: Nx Cloud - Agents
+    if: contains(github.event.head_commit.message, '(release)') != true
+    uses: nrwl/ci/.github/workflows/nx-cloud-agents.yml@v0.13.1
+    with:
+      number-of-agents: 3
+
+  codecoverage:
+    name: Code Coverage
+    runs-on: ubuntu-latest
+    needs: ['main']
+    steps:
+      - uses: xSAVIKx/artifact-exists-action@v0
+        id: check-artifact-exists
+        with:
+          name: dist-and-coverage-artifacts
+      - uses: actions/checkout@v3
+        if: steps.check-artifact-exists.outputs.exists == 'true'
+      - uses: actions/download-artifact@v3
+        if: steps.check-artifact-exists.outputs.exists == 'true'
+        with:
+          name: dist-and-coverage-artifacts
+          path: coverage/
+      - name: Display structure of downloaded files
+        if: steps.check-artifact-exists.outputs.exists == 'true'
+        run: ls -R
+      - uses: codecov/codecov-action@v3
+        if: steps.check-artifact-exists.outputs.exists == 'true'
+        with:
+          directory: ./coverage
+          flags: unittests # optional
+          name: codecov-umbrella # optional
+          fail_ci_if_error: false # optional (default = false)
+          verbose: false # optional (default = false)
+
+  release:
+    name: Release
+    runs-on: ubuntu-latest
+    needs: ['codecoverage']
+    permissions:
+      contents: read
+      packages: write
+    steps:
+      - uses: xSAVIKx/artifact-exists-action@v0
+        id: check-artifact-exists
+        with:
+          name: dist-and-coverage-artifacts
+      - uses: actions/checkout@v4
+        if: steps.check-artifact-exists.outputs.exists == 'true'
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: actions/setup-node@v3
+        if: steps.check-artifact-exists.outputs.exists == 'true'
+        with:
+          node-version: 'lts/*'
+          registry-url: 'https://npm.pkg.github.com'
+          scope: '@jasonruesch'
+      - name: Install dependencies
+        if: steps.check-artifact-exists.outputs.exists == 'true'
+        run: npm ci
+      - uses: actions/download-artifact@v3
+        if: steps.check-artifact-exists.outputs.exists == 'true'
+        with:
+          name: dist-and-coverage-artifacts
+          path: dist/
+      - name: Display structure of downloaded files
+        if: steps.check-artifact-exists.outputs.exists == 'true'
+        run: ls -R
+      - name: Release and publish
+        if: steps.check-artifact-exists.outputs.exists == 'true'
+        run: npx nx run-many -t release --all
+        env:
+          GITHUB_TOKEN: ${{ secrets.PAT }}
+          NPM_TOKEN: ${{ secrets.PAT }}
+
+  docker-build:
+    name: Docker Build
+    needs: ['release']
+    runs-on: ubuntu-latest
+    env:
+      INPUT_PUSH: true
+    steps:
+      - uses: xSAVIKx/artifact-exists-action@v0
+        id: check-artifact-exists
+        with:
+          name: dist-and-coverage-artifacts
+      - uses: actions/checkout@v3
+        if: steps.check-artifact-exists.outputs.exists == 'true'
+        with:
+          fetch-depth: 0
+      - name: Set up Docker Buildx
+        if: steps.check-artifact-exists.outputs.exists == 'true'
+        uses: docker/setup-buildx-action@v2
+      - name: Login to GitHub Container Registry
+        if: steps.check-artifact-exists.outputs.exists == 'true'
+        uses: docker/login-action@v2
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+      - uses: actions/setup-node@v3
+        if: steps.check-artifact-exists.outputs.exists == 'true'
+        with:
+          cache: 'npm'
+          node-version: 'lts/*'
+      - name: Install dependencies
+        if: steps.check-artifact-exists.outputs.exists == 'true'
+        run: npm ci
+      - uses: actions/download-artifact@v3
+        if: steps.check-artifact-exists.outputs.exists == 'true'
+        with:
+          name: dist-and-coverage-artifacts
+          path: dist/
+      - name: Display structure of downloaded files
+        if: steps.check-artifact-exists.outputs.exists == 'true'
+        run: ls -R
+      - name: Publish
+        if: steps.check-artifact-exists.outputs.exists == 'true'
+        run: npx nx run-many --target=container --all --parallel=2 --configuration=ci
+        env:
+          INPUT_GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
