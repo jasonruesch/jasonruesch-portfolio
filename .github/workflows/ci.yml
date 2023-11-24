@@ -1,5 +1,8 @@
 name: Release to NPM
 
+env:
+  BUILDX_NO_DEFAULT_ATTESTATIONS: 1
+
 on:
   push:
     branches:
