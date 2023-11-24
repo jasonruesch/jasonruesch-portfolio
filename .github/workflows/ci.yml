@@ -7,6 +7,7 @@ on:
 
 jobs:
   release:
+    name: Release
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -20,3 +21,4 @@ jobs:
         env:
           NODE_AUTH_TOKEN: ${{ secrets.PAT }}
           GITHUB_TOKEN: ${{ secrets.PAT }}
+          NPM_TOKEN: ${{ secrets.PAT }}
