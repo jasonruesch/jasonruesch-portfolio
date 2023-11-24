@@ -75,7 +75,6 @@
     },
     "container": {
       "executor": "@nx-tools/nx-container:build",
-      "dependsOn": ["build"],
       "options": {
         "engine": "docker",
         "metadata": {
@@ -117,6 +116,12 @@
             "tags": ["type=sha,prefix=sha-"]
           }
         }
+      }
+    },
+    "release": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "HUSKY=0 npx semantic-release --extends ./apps/portfolio/release.config.js"
       }
     }
   },
