@@ -1,6 +1,11 @@
 {
   "name": "@jasonruesch/tailwind",
   "version": "0.0.0-development",
+  "author": {
+    "email": "jason@jasonruesch.dev",
+    "name": "Jason Ruesch"
+  },
+  "private": false,
   "dependencies": {
     "tailwindcss": "^3.3.5"
   },
@@ -8,7 +13,7 @@
   "typings": "./index.d.ts",
   "repository": {
     "type": "git",
-    "url": "https://github.com/jasonruesch/jasonruesch.git",
+    "url": "https://github.com/jasonruesch/jasonruesch",
     "directory": "libs/tailwind"
   },
   "publishConfig": {

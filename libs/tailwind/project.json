@@ -32,6 +32,13 @@
           "libs/tailwind/package.json"
         ]
       }
+    },
+    "semantic-release": {
+      "executor": "@theunderscorer/nx-semantic-release:semantic-release",
+      "options": {
+        "buildTarget": "tailwind:build",
+        "outputPath": "dist/libs/tailwind"
+      }
     }
   },
   "tags": ["type:config", "scope:tailwind"]
