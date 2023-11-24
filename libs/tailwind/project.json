@@ -35,7 +35,6 @@
     },
     "release": {
       "executor": "nx:run-commands",
-      "dependsOn": ["build"],
       "options": {
         "command": "HUSKY=0 npx semantic-release --extends ./libs/tailwind/release.config.js"
       }
