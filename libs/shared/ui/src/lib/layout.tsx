@@ -53,7 +53,7 @@ export function Layout({ children }: { children?: ReactNode }) {
 
       <footer className="text-center p-4">
         Copyright &copy; {new Date().getFullYear()} Jason Ruesch. All rights
-        reserved. [Development]
+        reserved.
       </footer>
     </div>
   );
