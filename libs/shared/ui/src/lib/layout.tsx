@@ -9,7 +9,9 @@ export function Layout({ children }: { children?: ReactNode }) {
           <NavLink
             to="/"
             className={({ isActive }) =>
-              isActive ? 'text-cyan-500 dark:text-cyan-400' : ''
+              isActive
+                ? 'text-primary-500 dark:text-primary-400'
+                : 'hover:text-primary-500 dark:hover:text-primary-400'
             }
           >
             Home
@@ -17,7 +19,9 @@ export function Layout({ children }: { children?: ReactNode }) {
           <NavLink
             to="/about"
             className={({ isActive }) =>
-              isActive ? 'text-cyan-500 dark:text-cyan-400' : ''
+              isActive
+                ? 'text-primary-500 dark:text-primary-400'
+                : 'hover:text-primary-500 dark:hover:text-primary-400'
             }
           >
             About
@@ -25,7 +29,9 @@ export function Layout({ children }: { children?: ReactNode }) {
           <NavLink
             to="/contact"
             className={({ isActive }) =>
-              isActive ? 'text-cyan-500 dark:text-cyan-400' : ''
+              isActive
+                ? 'text-primary-500 dark:text-primary-400'
+                : 'hover:text-primary-500 dark:hover:text-primary-400'
             }
           >
             Contact
@@ -33,7 +39,9 @@ export function Layout({ children }: { children?: ReactNode }) {
           <NavLink
             to="/projects"
             className={({ isActive }) =>
-              isActive ? 'text-cyan-500 dark:text-cyan-400' : ''
+              isActive
+                ? 'text-primary-500 dark:text-primary-400'
+                : 'hover:text-primary-500 dark:hover:text-primary-400'
             }
           >
             Projects
@@ -41,7 +49,9 @@ export function Layout({ children }: { children?: ReactNode }) {
           <NavLink
             to="/privacy"
             className={({ isActive }) =>
-              isActive ? 'text-cyan-500 dark:text-cyan-400' : ''
+              isActive
+                ? 'text-primary-500 dark:text-primary-400'
+                : 'hover:text-primary-500 dark:hover:text-primary-400'
             }
           >
             Privacy
