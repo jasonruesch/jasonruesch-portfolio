@@ -1,0 +1,70 @@
+name: Pull Request CI
+
+env:
+  NX_CLOUD_ACCESS_TOKEN: ${{ secrets.NX_CLOUD_ACCESS_TOKEN }}
+  NX_CLOUD_AUTH_TOKEN: ${{ secrets.NX_CLOUD_ACCESS_TOKEN }}
+  CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
+  NX_BRANCH: ${{ github.event.number }}
+  NX_RUN_GROUP: ${{ github.run_id }}
+
+on: pull_request
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+
+jobs:
+  main:
+    name: Nx Cloud - Main Job
+    uses: nrwl/ci/.github/workflows/nx-cloud-main.yml@v0.13.0
+    with:
+      number-of-agents: 3
+      init-commands: |
+        npx nx-cloud start-ci-run --stop-agents-after="build" --agent-count=3
+      parallel-commands: |
+        npx nx-cloud record -- npx nx format:check
+        npx nx-cloud record -- npx commitlint --from ${{ github.event.pull_request.base.sha }} --to ${{ github.event.pull_request.head.sha }} --verbose
+      parallel-commands-on-agents: |
+        npx nx affected --target=lint --parallel=3
+        npx nx affected --target=test --parallel=3 --ci --coverage
+        npx nx affected --target=build --parallel=3
+        npx nx affected --target=e2e --parallel=1 --ci
+      artifacts-path: |
+        dist/
+        coverage/
+      artifacts-name: dist-and-coverage-artifacts
+    secrets:
+      NX_CLOUD_AUTH_TOKEN: ${{ secrets.NX_CLOUD_ACCESS_TOKEN }}
+      NX_CLOUD_ACCESS_TOKEN: ${{ secrets.NX_CLOUD_ACCESS_TOKEN }}
+
+  agents:
+    name: Nx Cloud - Agents
+    uses: nrwl/ci/.github/workflows/nx-cloud-agents.yml@v0.13.0
+    with:
+      number-of-agents: 3
+    secrets:
+      NX_CLOUD_AUTH_TOKEN: ${{ secrets.NX_CLOUD_ACCESS_TOKEN }}
+      NX_CLOUD_ACCESS_TOKEN: ${{ secrets.NX_CLOUD_ACCESS_TOKEN }}
+
+  codecoverage:
+    name: Code Coverage
+    runs-on: ubuntu-latest
+    needs: ['main']
+    steps:
+      - uses: actions/checkout@v3
+      - uses: xSAVIKx/artifact-exists-action@v0
+        id: check-artifact-exists
+        with:
+          name: dist-and-coverage-artifacts
+      - uses: actions/download-artifact@v3
+        if: steps.check-artifact-exists.outputs.exists == 'true'
+        with:
+          name: dist-and-coverage-artifacts
+          path: coverage/
+      - uses: codecov/codecov-action@v3
+        with:
+          directory: ./coverage
+          flags: unittests # optional
+          name: codecov-umbrella # optional
+          fail_ci_if_error: false # optional (default = false)
+          verbose: false # optional (default = false)
