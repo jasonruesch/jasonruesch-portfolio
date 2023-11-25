@@ -1,1 +1,3 @@
-export * as default from './lib/tailwind.config';
+import tailwindConfig from './lib/tailwind.config';
+
+export default tailwindConfig;

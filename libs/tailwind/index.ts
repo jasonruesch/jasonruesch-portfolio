@@ -1,1 +1,3 @@
-export * as default from './src';
+import tailwindConfig from './src';
+
+export default tailwindConfig;
