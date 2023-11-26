@@ -13,6 +13,7 @@ export function Nav() {
     <nav className="flex gap-4 items-center">
       {navigation.map(({ name, href }) => (
         <NavLink
+          key={href}
           to={href}
           className={({ isActive }) =>
             isActive

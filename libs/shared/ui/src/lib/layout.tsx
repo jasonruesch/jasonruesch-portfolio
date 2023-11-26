@@ -1,11 +1,16 @@
 import { ReactNode } from 'react';
-import Nav from './nav';
 
-export function Layout({ children }: { children?: ReactNode }) {
+export function Layout({
+  nav,
+  children,
+}: {
+  nav: JSX.Element;
+  children?: ReactNode;
+}) {
   return (
     <div className="h-full flex min-h-screen supports-[-webkit-touch-callout:none]:[min-height:-webkit-fill-available] flex-col">
       <header className="flex justify-center px-safe-offset-4 pb-4 pt-safe-offset-4">
-        <Nav />
+        {nav}
       </header>
 
       <main className="flex-1 p-4">{children}</main>
