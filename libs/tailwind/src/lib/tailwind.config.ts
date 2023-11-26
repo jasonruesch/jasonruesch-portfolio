@@ -1,9 +1,9 @@
 import aspectRatio from '@tailwindcss/aspect-ratio';
 import forms from '@tailwindcss/forms';
 import type { Config } from 'tailwindcss';
-import colors from 'tailwindcss/colors';
 import plugin from 'tailwindcss/plugin';
 import { createThemes } from 'tw-colors';
+import colors from './base/colors';
 import buttons from './components/buttons';
 
 export default {
