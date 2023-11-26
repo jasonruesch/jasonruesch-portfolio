@@ -1,3 +1,11 @@
+# [1.3.0](https://github.com/jasonruesch/jasonruesch/compare/portfolio-v1.2.0...portfolio-v1.3.0) (2023-11-26)
+
+
+### Features
+
+* **portfolio:** move portfolio specific nav ([26b8703](https://github.com/jasonruesch/jasonruesch/commit/26b87030531961915fa0b5211ffb7c6726dbbdde))
+* **tailwind:** add plugin for safe area insets ([545bdeb](https://github.com/jasonruesch/jasonruesch/commit/545bdebd974079dce6ee1b1caf8f760d4669314a))
+
 # [1.2.0](https://github.com/jasonruesch/jasonruesch/compare/portfolio-v1.1.0...portfolio-v1.2.0) (2023-11-26)
 
 
