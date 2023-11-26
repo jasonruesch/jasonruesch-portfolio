@@ -138,3 +138,19 @@ jobs:
         run: npx nx run-many --target=container --all --parallel=2 --configuration=ci
         env:
           INPUT_GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    needs: ['release']
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Build
+        run: |
+          npm install
+          npx nx build portfolio --base /jasonruesch/
+      - name: Deploy
+        uses: JamesIves/github-pages-deploy-action@4.0.0
+        with:
+          branch: gh-pages
+          folder: dist/apps/portfolio
