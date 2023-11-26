@@ -1,3 +1,10 @@
+# [1.1.0](https://github.com/jasonruesch/jasonruesch/compare/portfolio-v1.0.1...portfolio-v1.1.0) (2023-11-26)
+
+
+### Features
+
+* **tailwind:** add themes and components ([ea0eb41](https://github.com/jasonruesch/jasonruesch/commit/ea0eb415be8ad4bceda37ba16f5672573c8640b6))
+
 ## [1.0.1](https://github.com/jasonruesch/jasonruesch/compare/portfolio-v1.0.0...portfolio-v1.0.1) (2023-11-25)
 
 
