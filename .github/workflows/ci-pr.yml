@@ -46,18 +46,26 @@ jobs:
       NX_CLOUD_AUTH_TOKEN: ${{ secrets.NX_CLOUD_ACCESS_TOKEN }}
       NX_CLOUD_ACCESS_TOKEN: ${{ secrets.NX_CLOUD_ACCESS_TOKEN }}
 
-  codecoverage:
-    name: Code Coverage
+  check:
+    name: Check Artifacts
     runs-on: ubuntu-latest
     needs: ['main']
+    outputs:
+      exists: ${{ steps.check-artifact-exists.outputs.exists }}
     steps:
-      - uses: actions/checkout@v3
       - uses: xSAVIKx/artifact-exists-action@v0
         id: check-artifact-exists
         with:
           name: dist-and-coverage-artifacts
+
+  codecoverage:
+    name: Code Coverage
+    runs-on: ubuntu-latest
+    needs: ['check']
+    if: needs.check.outputs.exists == 'true'
+    steps:
+      - uses: actions/checkout@v3
       - uses: actions/download-artifact@v3
-        if: steps.check-artifact-exists.outputs.exists == 'true'
         with:
           name: dist-and-coverage-artifacts
           path: coverage/
