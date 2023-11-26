@@ -1,0 +1,7 @@
+secret:
+  ignored-matches:
+  - match: 1bf332206e361015db57b432b4d1e804a16351987a61eb8444a11631240402f3
+    name: Generic High Entropy Secret - nx.json
+  - match: 13b8051170acb591e0f05be01bcce73f56f3bfee76a74256e7162ec09ce477f7
+    name: Generic High Entropy Secret - nx.json
+version: 2

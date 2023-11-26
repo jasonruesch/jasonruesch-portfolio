@@ -49,6 +49,15 @@ export default {
           danger: colors.red,
           info: colors.blue,
         },
+        christmas: {
+          primary: colors.red,
+          secondary: colors.green,
+          neutral: colors.neutral,
+          success: colors.green,
+          warning: colors.yellow,
+          danger: colors.red,
+          info: colors.blue,
+        },
       }),
       {
         defaultTheme: {
