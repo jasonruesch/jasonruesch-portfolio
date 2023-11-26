@@ -135,6 +135,6 @@ jobs:
           name: dist-and-coverage-artifacts
           path: dist/
       - name: Publish
-        run: npx nx affected --target=container --parallel=2 --configuration=ci
+        run: npx nx run-many --target=container --all --parallel=2 --configuration=ci
         env:
           INPUT_GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
