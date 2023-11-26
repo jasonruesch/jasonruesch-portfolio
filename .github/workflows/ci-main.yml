@@ -135,6 +135,7 @@ jobs:
           INPUT_GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
   build-and-deploy:
+    name: Build and Deploy
     runs-on: ubuntu-latest
     needs: ['release']
     steps:

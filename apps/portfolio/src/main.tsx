@@ -16,6 +16,9 @@ const router = createBrowserRouter(
       {...routes}
     </Route>,
   ),
+  {
+    basename: import.meta.env.BASE_URL,
+  },
 );
 
 const root = ReactDOM.createRoot(
