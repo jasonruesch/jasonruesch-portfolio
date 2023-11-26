@@ -105,8 +105,7 @@ jobs:
 
   docker-build:
     name: Docker Build
-    needs: ['check', 'release']
-    if: needs.check.outputs.exists == 'true'
+    needs: ['release']
     runs-on: ubuntu-latest
     permissions:
       packages: write
@@ -130,10 +129,6 @@ jobs:
           node-version: 'lts/*'
       - name: Install dependencies
         run: npm ci
-      - uses: actions/download-artifact@v3
-        with:
-          name: dist-and-coverage-artifacts
-          path: dist/
       - name: Publish
         run: npx nx run-many --target=container --all --parallel=2 --configuration=ci
         env:
