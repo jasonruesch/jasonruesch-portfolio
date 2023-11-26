@@ -137,6 +137,6 @@ jobs:
           path: dist/
       - name: Publish
         if: steps.check-artifact-exists.outputs.exists == 'true'
-        run: npx nx affected --target=container --all --parallel=2 --configuration=ci
+        run: npx nx affected --target=container --parallel=2 --configuration=ci
         env:
           INPUT_GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
