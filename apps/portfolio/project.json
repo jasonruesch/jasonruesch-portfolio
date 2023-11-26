@@ -75,7 +75,7 @@
     },
     "container": {
       "executor": "@nx-tools/nx-container:build",
-      "dependsOn": ["build"],
+      "defaultConfiguration": "production",
       "options": {
         "engine": "docker",
         "metadata": {
@@ -92,7 +92,15 @@
         }
       },
       "configurations": {
-        "ci": {
+        "development": {
+          "file": "apps/portfolio/Dockerfile",
+          "metadata": {
+            "images": ["jasonruesch/portfolio"],
+            "push": false,
+            "tags": ["type=sha,prefix=sha-"]
+          }
+        },
+        "production": {
           "file": "apps/portfolio/Dockerfile.prod",
           "metadata": {
             "images": ["ghcr.io/jasonruesch/portfolio"],
@@ -107,14 +115,6 @@
               "type=sha,format=long",
               "latest"
             ]
-          }
-        },
-        "local": {
-          "file": "apps/portfolio/Dockerfile",
-          "metadata": {
-            "images": ["jasonruesch/portfolio"],
-            "push": false,
-            "tags": ["type=sha,prefix=sha-"]
           }
         }
       }
