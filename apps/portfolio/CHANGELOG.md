@@ -1,3 +1,10 @@
+# [1.2.0](https://github.com/jasonruesch/jasonruesch/compare/portfolio-v1.1.0...portfolio-v1.2.0) (2023-11-26)
+
+
+### Features
+
+* **portfolio:** update nav component ([4cef7b1](https://github.com/jasonruesch/jasonruesch/commit/4cef7b1507c8cd774d76429cc608b94b9d49f726))
+
 # [1.1.0](https://github.com/jasonruesch/jasonruesch/compare/portfolio-v1.0.1...portfolio-v1.1.0) (2023-11-26)
 
 
