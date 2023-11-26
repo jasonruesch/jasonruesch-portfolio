@@ -20,6 +20,7 @@ export default {
   plugins: [
     forms,
     aspectRatio,
+    require('tailwindcss-safe-area'),
     createThemes(
       ({ light, dark }) => ({
         light: light({
