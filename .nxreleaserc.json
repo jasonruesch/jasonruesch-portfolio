@@ -3,5 +3,6 @@
   "npm": true,
   "github": true,
   "repositoryUrl": "https://github.com/jasonruesch/jasonruesch",
-  "branches": ["main"]
+  "branches": ["main"],
+  "commitMessage": "chore(release): ${nextRelease.gitTag}\n\n${nextRelease.notes}"
 }
