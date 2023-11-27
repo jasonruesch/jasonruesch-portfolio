@@ -1,3 +1,10 @@
+# [1.3.0](https://github.com/jasonruesch/jasonruesch/compare/tailwind-v1.2.0...tailwind-v1.3.0) (2023-11-27)
+
+
+### Features
+
+* **portfolio:** add logo to header ([c0ef45e](https://github.com/jasonruesch/jasonruesch/commit/c0ef45e28658a19e7021774b10d7884c746f3fbc))
+
 # [1.2.0](https://github.com/jasonruesch/jasonruesch/compare/tailwind-v1.1.0...tailwind-v1.2.0) (2023-11-26)
 
 
