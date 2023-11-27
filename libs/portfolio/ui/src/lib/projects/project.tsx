@@ -17,7 +17,7 @@ export function Component() {
   };
 
   return (
-    <div>
+    <div className="h-full grid place-content-center text-center">
       <div className="mb-4">
         <Link to="/projects">Back to projects</Link>
       </div>
