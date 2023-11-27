@@ -3,9 +3,7 @@
   "version": "0.0.1",
   "license": "MIT",
   "scripts": {
-    "prepare": "husky install",
-    "predeploy": "npx nx build portfolio",
-    "deploy": "gh-pages -d dist/apps/portfolio"
+    "prepare": "husky install"
   },
   "private": true,
   "dependencies": {
