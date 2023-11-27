@@ -1,3 +1,10 @@
+# [1.6.0](https://github.com/jasonruesch/jasonruesch/compare/portfolio-v1.5.0...portfolio-v1.6.0) (2023-11-27)
+
+
+### Features
+
+* **portfolio:** add logo to header ([c0ef45e](https://github.com/jasonruesch/jasonruesch/commit/c0ef45e28658a19e7021774b10d7884c746f3fbc))
+
 # [1.5.0](https://github.com/jasonruesch/jasonruesch/compare/portfolio-v1.4.0...portfolio-v1.5.0) (2023-11-27)
 
 
