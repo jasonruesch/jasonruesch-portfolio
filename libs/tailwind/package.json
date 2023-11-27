@@ -21,6 +21,7 @@
     "directory": "libs/tailwind"
   },
   "publishConfig": {
+    "access": "public",
     "registry": "https://npm.pkg.github.com"
   }
 }
