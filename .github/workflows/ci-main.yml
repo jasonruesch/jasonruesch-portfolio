@@ -9,10 +9,13 @@ on:
     branches:
       - 'main'
 
-# Needed for nx-set-shas within nx-cloud-main.yml, when run on the main branch
+# Needed for nx-set-shas within nx-cloud-main.yml,
+# when run on the main branch,
+# and to publish to GitHub Packages
 permissions:
   actions: read
-  contents: read
+  contents: write
+  packages: write
 
 jobs:
   main:
@@ -62,12 +65,15 @@ jobs:
     needs: ['check']
     if: needs.check.outputs.exists == 'true'
     steps:
-      - uses: actions/checkout@v3
-      - uses: actions/download-artifact@v3
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Download artifacts
+        uses: actions/download-artifact@v3
         with:
           name: dist-and-coverage-artifacts
           path: coverage/
-      - uses: codecov/codecov-action@v3
+      - name: Code Coverage
+        uses: codecov/codecov-action@v3
         with:
           directory: ./coverage
           flags: unittests # optional
@@ -80,19 +86,19 @@ jobs:
     runs-on: ubuntu-latest
     needs: ['check', 'codecoverage']
     if: needs.check.outputs.exists == 'true'
-    permissions:
-      contents: write
-      packages: write
     steps:
-      - uses: actions/checkout@v3
+      - name: Checkout
+        uses: actions/checkout@v3
         with:
           fetch-depth: 0
           persist-credentials: false
-      - uses: actions/setup-node@v3
+      - name: Set up Node
+        uses: actions/setup-node@v3
         with:
           cache: 'npm'
           node-version: 'lts/*'
-      - uses: actions/download-artifact@v3
+      - name: Download artififacts
+        uses: actions/download-artifact@v3
         with:
           name: dist-and-coverage-artifacts
           path: dist/

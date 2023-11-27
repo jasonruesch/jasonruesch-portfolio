@@ -64,12 +64,15 @@ jobs:
     needs: ['check']
     if: needs.check.outputs.exists == 'true'
     steps:
-      - uses: actions/checkout@v3
-      - uses: actions/download-artifact@v3
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Download artifacts
+        uses: actions/download-artifact@v3
         with:
           name: dist-and-coverage-artifacts
           path: coverage/
-      - uses: codecov/codecov-action@v3
+      - name: Code Coverage
+        uses: codecov/codecov-action@v3
         with:
           directory: ./coverage
           flags: unittests # optional

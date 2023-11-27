@@ -9,19 +9,29 @@ on:
     tags:
       - 'portfolio-v*'
 
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.ref }}
+  cancel-in-progress: true
+
+# Sets the GITHUB_TOKEN permissions to allow
+# publish to GitHub Packages and
+# deployment to GitHub Pages
+permissions:
+  contents: read
+  packages: write
+  pages: write
+  id-token: write
+
 jobs:
-  docker-build:
+  docker-publish:
     name: Docker Publish Portfolio
     # if: startsWith(github.event.ref, 'refs/tags/portfolio-v')
     runs-on: ubuntu-latest
-    permissions:
-      packages: write
     env:
       INPUT_PUSH: true
     steps:
-      - uses: actions/checkout@v3
-        with:
-          fetch-depth: 0
+      - name: Checkout
+        uses: actions/checkout@v4
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v2
       - name: Login to GitHub Container Registry
@@ -30,14 +40,15 @@ jobs:
           registry: ghcr.io
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
-      - uses: actions/setup-node@v3
+      - name: Set up Node
+        uses: actions/setup-node@v3
         with:
           cache: 'npm'
           node-version: 'lts/*'
       - name: Install dependencies
         run: npm ci
       - name: Publish
-        run: npx nx run-many --target=container --all --parallel=2 --configuration=ci
+        run: npx nx container portfolio
         env:
           INPUT_GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
@@ -48,11 +59,6 @@ jobs:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
-    # Sets the GITHUB_TOKEN permissions to allow deployment to GitHub Pages
-    permissions:
-      contents: read
-      pages: write
-      id-token: write
     steps:
       - name: Checkout
         uses: actions/checkout@v4
