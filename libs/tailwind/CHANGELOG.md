@@ -1,3 +1,10 @@
+# [1.4.0](https://github.com/jasonruesch/jasonruesch/compare/tailwind-v1.3.0...tailwind-v1.4.0) (2023-11-27)
+
+
+### Features
+
+* **tailwind:** comment out unused themes ([fb093ff](https://github.com/jasonruesch/jasonruesch/commit/fb093ffbd620ee1b0abced08493f37e5704ac1cb))
+
 # [1.3.0](https://github.com/jasonruesch/jasonruesch/compare/tailwind-v1.2.0...tailwind-v1.3.0) (2023-11-27)
 
 
