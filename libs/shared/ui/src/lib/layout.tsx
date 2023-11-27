@@ -1,5 +1,6 @@
 import { ReactNode } from 'react';
 import { Logo } from './logo';
+import { LogoNeutral } from './logo-neutral';
 
 export function Layout({
   nav,
@@ -17,9 +18,12 @@ export function Layout({
 
       <main className="flex-1 p-4">{children}</main>
 
-      <footer className="text-center px-safe-offset-4 pt-4 pb-safe-offset-4">
-        Copyright &copy; {new Date().getFullYear()} Jason Ruesch. All rights
-        reserved.
+      <footer className="flex flex-col gap-4 items-center justify-center px-safe-offset-4 pt-4 pb-safe-offset-4">
+        <LogoNeutral className="h-12 w-12" />
+        <p>
+          Copyright &copy; {new Date().getFullYear()} Jason Ruesch. All rights
+          reserved.
+        </p>
       </footer>
     </div>
   );
