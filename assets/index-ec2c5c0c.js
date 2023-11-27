@@ -1,1 +1,0 @@
-import{j as e}from"./index-2128b601.js";function t(){return e.jsxs("div",{className:"h-full grid place-content-center text-center",children:[e.jsx("h1",{className:"text-4xl font-bold mb-4",children:"About Me"}),e.jsx("p",{className:"text-neutral-500 dark:text-neutral-400",children:"Hi, my name is Jason Ruesch."})]})}t.displayName="About";export{t as Component};
