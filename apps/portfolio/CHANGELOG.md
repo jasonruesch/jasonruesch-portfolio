@@ -1,3 +1,10 @@
+# [1.7.0](https://github.com/jasonruesch/jasonruesch/compare/portfolio-v1.6.0...portfolio-v1.7.0) (2023-11-27)
+
+
+### Features
+
+* **portfolio:** add logo to footer ([b97960b](https://github.com/jasonruesch/jasonruesch/commit/b97960bec2ae6c5974bdd137e6c966df32d08d88))
+
 # [1.6.0](https://github.com/jasonruesch/jasonruesch/compare/portfolio-v1.5.0...portfolio-v1.6.0) (2023-11-27)
 
 
