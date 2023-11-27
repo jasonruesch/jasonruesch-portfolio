@@ -1,3 +1,10 @@
+# [1.5.0](https://github.com/jasonruesch/jasonruesch/compare/portfolio-v1.4.0...portfolio-v1.5.0) (2023-11-27)
+
+
+### Features
+
+* **portfolio:** update project list and detail pages ([e0ea7bb](https://github.com/jasonruesch/jasonruesch/commit/e0ea7bbc3a6d428decc0a4c12c59df32ff492e7f))
+
 # [1.4.0](https://github.com/jasonruesch/jasonruesch/compare/portfolio-v1.3.0...portfolio-v1.4.0) (2023-11-27)
 
 
