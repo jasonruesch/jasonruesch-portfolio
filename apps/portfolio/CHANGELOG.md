@@ -1,3 +1,10 @@
+# [1.8.0](https://github.com/jasonruesch/jasonruesch/compare/portfolio-v1.7.0...portfolio-v1.8.0) (2023-11-27)
+
+
+### Features
+
+* **tailwind:** comment out unused themes ([fb093ff](https://github.com/jasonruesch/jasonruesch/commit/fb093ffbd620ee1b0abced08493f37e5704ac1cb))
+
 # [1.7.0](https://github.com/jasonruesch/jasonruesch/compare/portfolio-v1.6.0...portfolio-v1.7.0) (2023-11-27)
 
 
