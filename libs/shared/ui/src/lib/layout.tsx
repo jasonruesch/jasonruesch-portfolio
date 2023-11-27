@@ -1,4 +1,5 @@
 import { ReactNode } from 'react';
+import { Logo } from './logo';
 
 export function Layout({
   nav,
@@ -9,7 +10,8 @@ export function Layout({
 }) {
   return (
     <div className="h-full flex min-h-screen supports-[-webkit-touch-callout:none]:[min-height:-webkit-fill-available] flex-col">
-      <header className="flex items-center justify-center px-safe-offset-4 pt-safe h-14">
+      <header className="flex items-center px-safe-offset-4 pt-safe h-14 gap-4">
+        <Logo className="h-8 w-8" />
         {nav}
       </header>
 

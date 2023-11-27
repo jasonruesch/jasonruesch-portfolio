@@ -34,4 +34,6 @@ export default defineConfig({
       provider: 'v8',
     },
   },
+
+  base: '/', // Use '/jasonruesch/' without a custom domain
 });
