@@ -7,11 +7,12 @@ env:
 on:
   push:
     tags:
-      - '*'
+      - 'portfolio-v*'
 
 jobs:
   docker-build:
-    name: Docker Build
+    name: Docker Publish Portfolio
+    # if: startsWith(github.event.ref, 'refs/tags/portfolio-v')
     runs-on: ubuntu-latest
     permissions:
       packages: write
@@ -41,6 +42,8 @@ jobs:
           INPUT_GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
   deploy:
+    name: Deploy Portfolio
+    # if: startsWith(github.event.ref, 'refs/tags/portfolio-v')
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
