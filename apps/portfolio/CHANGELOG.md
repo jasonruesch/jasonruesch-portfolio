@@ -1,3 +1,10 @@
+# [1.4.0](https://github.com/jasonruesch/jasonruesch/compare/portfolio-v1.3.0...portfolio-v1.4.0) (2023-11-27)
+
+
+### Features
+
+* **portfolio:** adjust header height ([79b6080](https://github.com/jasonruesch/jasonruesch/commit/79b60808b04d87c0ebae916625202a5b4a3092c7))
+
 # [1.3.0](https://github.com/jasonruesch/jasonruesch/compare/portfolio-v1.2.0...portfolio-v1.3.0) (2023-11-26)
 
 
