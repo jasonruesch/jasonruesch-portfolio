@@ -9,7 +9,7 @@ export function Layout({
 }) {
   return (
     <div className="h-full flex min-h-screen supports-[-webkit-touch-callout:none]:[min-height:-webkit-fill-available] flex-col">
-      <header className="flex justify-center px-safe-offset-4 pb-4 pt-safe-offset-4">
+      <header className="flex items-center justify-center px-safe-offset-4 pt-safe h-14">
         {nav}
       </header>
 
