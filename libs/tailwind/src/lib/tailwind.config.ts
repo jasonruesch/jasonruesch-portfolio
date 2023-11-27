@@ -4,7 +4,7 @@ import type { Config } from 'tailwindcss';
 import plugin from 'tailwindcss/plugin';
 import { createThemes } from 'tw-colors';
 import colors from './base/colors';
-import buttons from './components/buttons';
+import button from './components/button';
 
 export default {
   theme: {
@@ -69,7 +69,7 @@ export default {
       },
     ),
     plugin(({ addComponents }) => {
-      addComponents(buttons);
+      addComponents(button);
     }),
   ],
 } satisfies Omit<Config, 'content'>;
