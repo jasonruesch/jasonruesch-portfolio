@@ -4,7 +4,7 @@
   "license": "MIT",
   "scripts": {
     "prepare": "husky install",
-    "predeploy": "npx nx build portfolio --base /jasonruesch/",
+    "predeploy": "npx nx build portfolio",
     "deploy": "gh-pages -d dist/apps/portfolio"
   },
   "private": true,
