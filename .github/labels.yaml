@@ -46,3 +46,7 @@
   color: '0e8a16'
 - name: dep-updates
   color: '0e8a16'
+- name: draft
+  color: 'FFEC19'
+- name: wip
+  color: 'FFEC19'

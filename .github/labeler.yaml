@@ -3,10 +3,6 @@ area/apps:
   - 'apps/**/*'
 area/libs:
   - 'libs/**/*'
-# scope/server:
-#   - apps/server/**/*
-#   - apps/server-e2e/**/*
-#   - libs/server/**/*
 scope/portfolio:
   - apps/portfolio/**/*
   - apps/portfolio-e2e/**/*
